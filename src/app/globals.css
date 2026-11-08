@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #0b0b0d;
+  --surface: #111114;
+  --surface-raised: #17171b;
+  --surface-hover: #202024;
+  --foreground: #f5f4f2;
+  --muted: #93939d;
+  --subtle: #62626c;
+  --border: rgba(255, 255, 255, 0.085);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --border-width: 1px;
+  --accent: #ff7138;
+  --accent-bright: #ff895a;
+  --accent-soft: rgba(255, 113, 56, 0.14);
+  --success: #68d5a0;
+  --warning: #f2c46d;
+  --danger: #ff827b;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-size-caption: 0.75rem;
+  --font-size-body: 0.9375rem;
+  --font-size-heading: 1.5rem;
+  --font-size-display: clamp(2rem, 4vw, 2.75rem);
+  --line-height-tight: 1.12;
+  --line-height-body: 1.6;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-page: clamp(1rem, 4vw, 3.25rem);
+  --space-section: clamp(2rem, 5vw, 4rem);
+  --fitloop-radius-card: 1.1rem;
+  --fitloop-radius-control: 0.8rem;
+  --radius-pill: 999px;
+  --shadow-panel: 0 24px 70px rgba(0, 0, 0, 0.22);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-hover: var(--surface-hover);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-bright: var(--accent-bright);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-body);
+  --text-caption: var(--font-size-caption);
+  --text-copy: var(--font-size-body);
+  --text-heading: var(--font-size-heading);
+  --text-display: var(--font-size-display);
+  --text-display--line-height: var(--line-height-tight);
+  --leading-body: var(--line-height-body);
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+  --spacing-page: var(--space-page);
+  --spacing-section: var(--space-section);
+  --radius-card: var(--fitloop-radius-card);
+  --radius-control: var(--fitloop-radius-control);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--background);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 82% -12%, rgba(255, 113, 56, 0.075), transparent 34rem),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(255, 113, 56, 0.35);
+  color: white;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 3px;
+}
+
+.surface-border {
+  border: 1px solid var(--border);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
