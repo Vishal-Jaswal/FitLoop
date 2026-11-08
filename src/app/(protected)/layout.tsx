@@ -1,11 +1,13 @@
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { AppShell } from "@/components/layout/app-shell";
+import { hasSupabaseConfig } from "@/infrastructure/database/supabase/config";
 import { getAuthenticatedUserId } from "@/services/auth-service";
 import { getProfile } from "@/services/profile-service";
 
 export default async function ProtectedLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   await connection();
+  if (!hasSupabaseConfig()) redirect("/login?error=setup");
   const userId = await getAuthenticatedUserId();
   if (!userId) redirect("/login");
 

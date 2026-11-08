@@ -15,6 +15,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   const query = await searchParams;
   let notice: string | undefined;
   if (query.error === "confirmation") notice = "That confirmation link could not be verified. Please request a new one and try again.";
+  if (query.error === "setup") notice = "Add your Supabase project URL and publishable key to .env.local to use account features.";
 
   try {
     const userId = await getAuthenticatedUserId();
@@ -24,7 +25,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
     }
   } catch (error) {
     if (error instanceof Error && error.message.includes("Supabase is not configured")) {
-      notice = "Account access is ready once Supabase is configured. You can still preview the dashboard.";
+      notice ??= "Account access is ready once Supabase is configured. You can still preview the dashboard.";
     } else {
       throw error;
     }

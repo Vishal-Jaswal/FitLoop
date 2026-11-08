@@ -5,6 +5,7 @@ import { connection } from "next/server";
 import { ProfileSetupForm } from "@/features/profile/profile-setup-form";
 import { Brand } from "@/components/layout/brand";
 import { Container } from "@/components/ui/container";
+import { hasSupabaseConfig } from "@/infrastructure/database/supabase/config";
 import { getAuthenticatedUserId } from "@/services/auth-service";
 import { getProfile } from "@/services/profile-service";
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = { title: "Set up your profile" };
 
 export default async function ProfileSetupPage() {
   await connection();
+  if (!hasSupabaseConfig()) redirect("/login?error=setup");
   const userId = await getAuthenticatedUserId();
   if (!userId) redirect("/login");
 
