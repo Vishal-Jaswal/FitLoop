@@ -16,11 +16,16 @@ Email/password signup may require email confirmation depending on the Supabase A
 
 ## Apply migrations
 
-The initial migration creates only `public.profiles`, links each profile to `auth.users`, and grants authenticated users access only to their own row. It also enables RLS. No migration has been applied to a hosted project as part of this milestone.
+The migrations create the private `public.profiles` table and the workout catalogue, routines, sessions, sets, indexes, and ownership policies. The workout migration adds new tables and leaves the profile policy unchanged. No migration has been applied to a hosted project as part of this implementation.
 
 ### Supabase Dashboard
 
-For a first setup, open the project’s SQL Editor and run the contents of [`supabase/migrations/20261108014210_profile_foundation.sql`](../supabase/migrations/20261108014210_profile_foundation.sql). Review the SQL in the editor before running it.
+For a first setup, review and apply the migrations in timestamp order:
+
+1. [`20261108014210_profile_foundation.sql`](../supabase/migrations/20261108014210_profile_foundation.sql)
+2. [`20261108073527_workout_tracking.sql`](../supabase/migrations/20261108073527_workout_tracking.sql)
+
+Use the project’s SQL Editor only after confirming it is the intended project and reviewing both files.
 
 ### Supabase CLI
 
@@ -45,3 +50,14 @@ The CLI may ask for the database password during linking. Enter it only in the C
 - Anonymous users receive no table privileges.
 
 Review and test these policies again whenever profile access or ownership rules change.
+
+## Workout data access
+
+- The exercise catalogue is seeded from the workout migration and is readable by authenticated users.
+- Every user-owned routine and session is restricted to its `owner_id = auth.uid()`.
+- Routine exercises, workout exercises, and sets are restricted through their owning routine or session.
+- Anonymous users receive no workout table privileges. No service-role key is used by the application.
+- The local `test` / `test` demo path uses device-local browser storage and never inserts demo records into the database.
+- The database functions used to start a routine-based session, reorder routine exercises, and finish a workout are `SECURITY INVOKER`; they run under the caller’s authenticated permissions and RLS policies.
+
+For local Supabase integration and RLS testing, run the Supabase CLI against a local Docker-backed stack. Do not point `db push --remote` at a hosted project unless you have reviewed the migration plan and selected the intended project.

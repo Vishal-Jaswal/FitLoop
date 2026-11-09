@@ -21,7 +21,7 @@ export function DashboardPreview({ name = "Alex", demoMode = false }: { name?: s
           <h1 className="text-balance text-display font-semibold tracking-[-0.055em]">A little progress, <span className="text-muted">every day.</span></h1>
           <p className="mt-3 max-w-xl text-sm leading-6 text-muted">Welcome back, {name}. Your foundation for a more consistent week starts here.</p>
         </div>
-        <Link className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-accent px-5 text-sm font-semibold text-white shadow-[0_8px_28px_rgba(255,113,56,0.2)] transition hover:bg-accent-bright" href="/signup">Set up your profile <span aria-hidden="true">↗</span></Link>
+        <Link className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-accent px-5 text-sm font-semibold text-white shadow-[0_8px_28px_rgba(255,113,56,0.2)] transition hover:bg-accent-bright" href="/workouts/new">Start a workout <span aria-hidden="true">↗</span></Link>
       </div>
 
       <section aria-label="Weekly progress" className="grid gap-4 lg:grid-cols-[1.55fr_1fr_1fr]">
